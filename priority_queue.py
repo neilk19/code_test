@@ -3,10 +3,14 @@ from collections import OrderedDict
 
 
 class Job(object):
+    """A simple class used to verify and store values for incoming dictionaries
+    """
+
     JOB_KEYS = ['command', 'priority']
 
     def __init__(self, job_dict: dict):
 
+        # validate job dict
         if not isinstance(job_dict, dict):
             raise ValueError(f"Expected dict, got {type(job_dict)}")
 
@@ -31,13 +35,15 @@ class Job(object):
 
 class PriorityQueue(object):
     """
-    Simple Priority Queue
-    add(job) takes a dictionary with
+    Appends incoming Job instances to a queue based on priority
+    and sorts them in order of which it was recieved
+
     """
     def __init__(self):
         self._queue = OrderedDict({})
 
     def __str__(self):
+        # simple output to display queue
         output = ''
         for prio, jobs, in sorted(self._queue.items()):
             output += '\nPriority: {}'.format(prio)
@@ -46,9 +52,6 @@ class PriorityQueue(object):
             output += '\n'
         return output
 
-    def is_empty(self):
-        return len(self._queue) == 0
-
     def add(self, job_dict: dict):
         """ Adds job to queue list and also adds to the dictionary
         to better sort jobs with same priority.
@@ -56,6 +59,7 @@ class PriorityQueue(object):
         {"command": "batcherapp -f -p /YYZ/some/path166", "priority": 1}
         """
         job = Job(job_dict)
+        # adding to jobs to assigned priorities
         if job.priority in self._queue:
             self._queue[job.priority].append(job)
         else:
