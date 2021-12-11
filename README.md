@@ -10,7 +10,7 @@ O(2**n) which is the slowest.
 ----
 *2. What are the most important things to look for when reviewing another team member's code?*
 
-For the most part I think alot of it depends on expericnce and
+I think alot of it depends on experience of the team members and backgrounds they come from, but for the most part 
 1. Check for syntax and logic errors which might immediately break the code.
 2. Check for python coding standards naming, spacing etc
 3. Hard to always do this but getting a general idea what the code is doing.
